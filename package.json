@@ -1,0 +1,30 @@
+{
+  "name": "server_for_financial_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "events": "^3.1.0",
+    "knex": "^0.21.1",
+    "koa": "^2.12.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^8.0.8",
+    "koa-server": "^1.2.2",
+    "pg": "^8.2.1",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "7.9.0",
+    "@babel/runtime": "7.9.2",
+    "babel-jest": "24.9.0",
+    "babel-preset-expo": "~8.1.0",
+    "eslint": "6.8.0",
+    "jest": "24.9.0",
+    "mocha": "^7.2.0"
+  },
+  "description": ""
+}
