@@ -3,7 +3,7 @@ const Koa = require('koa');
 const {routes} = require('./router');
 const Logger = require('koa-logger');
 
-const port = 8080;
+var port = process.env.PORT || 5000;
 
 let app = new Koa();
 
@@ -11,4 +11,6 @@ app.use(Logger());
 app.use(routes);
 
 
-module.exports = app.listen(8080);
+app.listen(port);
+
+exports.app = app.listen(port + 1)
