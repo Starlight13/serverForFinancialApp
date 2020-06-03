@@ -13,4 +13,3 @@ app.use(routes);
 
 app.listen(port);
 
-exports.app = app.listen(port + 1)
