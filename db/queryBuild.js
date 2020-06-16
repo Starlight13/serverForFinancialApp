@@ -6,6 +6,13 @@ const authUser = (email, password) => {
         );
 }
 
+const ifEmailExists = (email) => {
+    return(
+        `Select userid from users\n` +
+        `where email = '${email}'`
+    )
+}
+
 const userExpense = (user) => { 
     return(`Select *, to_char(datestamp, \'DD Mon HH24:MI\') as date from userhistory\n`+
     `where userid = ${user} order by datestamp desc`)
@@ -27,6 +34,7 @@ const addUser = (username, email, password) => {
 const getRoomie = (user) => {
     return(`select roomieid from users where userid = ${user}`)
 }
+
 
 
 const commonExpense = (user, roomie) => {
@@ -80,6 +88,10 @@ const getUserInfo = (user) => {
     return(`select userid, username, email from users where userid = ${user}`)
 }
 
+const checkRoomie = (user) => {
+    return(`select userid from users where userid = ${user} and roomieid is null `)
+}
+
 const addRoomie = (user, roomie) => {
     return(`Update users\n`+
             `Set roomieid = ${roomie} where userid = ${user};\n`+
@@ -113,3 +125,5 @@ exports.monthForBar = monthForBar;
 exports.changePass = changePass;
 exports.changeUsername = changeUsername;
 exports.getUserInfo = getUserInfo;
+exports.ifEmailExists = ifEmailExists;
+exports.checkRoomie = checkRoomie;

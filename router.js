@@ -18,11 +18,11 @@ router.get('/', async (ctx, next) => {
     ctx.body = await pool.compareExpense(ctx.request.headers.user);
 })
 .get('/getPie', async (ctx, next) => {
-    const user = ctx.request.headers.user;
     ctx.body = await pool.getSumByCat(ctx.request.headers.user);
 })
-.get('/addSpend', async (ctx, next) => {
-    ctx.body = await pool.addSpend(ctx.request.headers.user,  ctx.request.headers.name, ctx.request.headers.price, ctx.request.headers.category, ctx.request.headers.roomiebool, ctx.request.headers.info)
+.post('/addSpend', async (ctx, next) => {
+    data = ctx.request.body;
+    ctx.response.body = await pool.addSpend(data.user,  data.name, data.price, data.category, data.roomiebool, data.info)
 })
 .get('/getSum',async (ctx, next) => {
     ctx.body = await pool.getSum(ctx.request.headers.user);
@@ -36,14 +36,20 @@ router.get('/', async (ctx, next) => {
 .get('/signIn', async (ctx, next) => {
     ctx.body = await pool.authUser(ctx.request.headers.email, ctx.request.headers.password);
 })
-.get('/signUp', async (ctx, next) => {
-    ctx.body = await pool.addUser(ctx.request.headers.username, ctx.request.headers.email, ctx.request.headers.password);
+.post('/signUp', async (ctx, next) => {
+    data = ctx.request.body;
+    ctx.body = await pool.addUser(data.username, data.email, data.password);
 })
-.get('/changePass', async (ctx, next) => {
-    ctx.body = await pool.changePass(ctx.request.headers.user, ctx.request.headers.password);
+.get('/ifEmailExists', async (ctx, next) => {
+    ctx.body = await pool.ifEmailExists(ctx.request.headers.email);
 })
-.get('/changeUsername', async (ctx, next) => {
-    ctx.body = await pool.changeUsername(ctx.request.headers.user, ctx.request.headers.username);
+.post('/changePass', async (ctx, next) => {
+    data = ctx.request.body;
+    ctx.body = await pool.changePass(data.user, data.password);
+})
+.post('/changeUsername', async (ctx, next) => {
+    data = ctx.request.body;
+    ctx.body = await pool.changeUsername(data.user, data.username);
 })
 .get('/getUserInfo', async (ctx, next) => {
     ctx.body = await pool.getUserInfo(ctx.request.headers.user);
@@ -51,11 +57,16 @@ router.get('/', async (ctx, next) => {
 .get('/ifRoomie', async (ctx, next) => {
     ctx.body = await pool.getRoomie(ctx.request.headers.user);
 })
-.get('/addRoomie', async (ctx, next) => {
-    ctx.body = await pool.addRoomie(ctx.request.headers.user, ctx.request.header.roomie);
+.post('/addRoomie', async (ctx, next) => {
+    data = ctx.request.body;
+    ctx.body = await pool.addRoomie(data.user, data.roomie);
 })
-.get('/deleteRoomie', async (ctx, next) => {
-    ctx.body = await pool.deleteRoomie(ctx.request.headers.user, ctx.request.header.roomie);
+.get('/checkRoomie', async (ctx, next) => {
+    ctx.body = await pool.checkRoomie(ctx.request.headers.user);
+})
+.post('/deleteRoomie', async (ctx, next) => {
+    data = ctx.request.body;
+    ctx.body = await pool.deleteRoomie(data.user, data.roomie);
 });
 
 exports.routes = router.routes();

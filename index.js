@@ -2,14 +2,19 @@
 const Koa = require('koa');
 const {routes} = require('./router');
 const Logger = require('koa-logger');
+const bodyParser = require('koa-bodyparser')
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 8080;
 
 let app = new Koa();
 
 app.use(Logger());
-app.use(routes);
+app
+.use(bodyParser())
+.use(routes);
 
 
-app.listen(port);
+// app.listen(port);
+
+module.exports = app.listen(port);
 
